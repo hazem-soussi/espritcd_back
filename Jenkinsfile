@@ -53,9 +53,8 @@ agent any
             steps {
             echo 'Analzying quality code.'
                 script {
-                    withSonarQubeEnv(credentialsId: 'sonar_hazoum', installationName: 'sonarqube_server') {
-           // withSonarQubeEnv(credentialsId: 'hazem_esprit') {
-               // sh "mvn clean package sonar:sonar" 
+                    withSonarQubeEnv(credentialsId: 'hazem_sonar_ci', installationName: 'sonarqube_server') {
+     
                   sh "mvn clean package sonar:sonar" 
 
                  }
