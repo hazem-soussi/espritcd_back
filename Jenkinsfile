@@ -17,7 +17,7 @@ agent any
         stage ("1st stage : Git checkout PLEAASE"){
             steps{
         git branch: 'main', 
-            url: 'https://github.com/hazem-soussi/projet_esprit.git'
+            url: 'https://github.com/hazem-soussi/espritcd_back.git'
             }
         
         }
