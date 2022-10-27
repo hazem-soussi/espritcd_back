@@ -30,10 +30,7 @@ agent any
             }
         }
         
-        
-        
-
-        
+       
              stage ("3rd Stage : unit testing"){
             steps{
                 sh "mvn test"
@@ -135,13 +132,7 @@ agent any
                     withCredentials([string(credentialsId: 'docker_password', variable: 'docker_imagePWD')]) {
                         sh "docker login -u hazem1998 -p ${docker_imagePWD}"
                     sh 'docker image push hazem1998/$JOB_NAME:v1.$BUILD_ID'
-                    sh 'docker image push hazem1998/$JOB_NAME:latest '}
-                    
-                  
-                    
-                    
-                    
-          
+                    sh 'docker image push hazem1998/$JOB_NAME:latest '}       
                 }
             
             }
@@ -149,6 +140,14 @@ agent any
         
         }
         
+        
+         
+        stage("APP CONTAINERS LAUNCH WITH Docker-Compose") {
+          steps {
+              sh 'docker-compose up'
+             }
+     
+       } 
     
         
              //stage("6th stage : packaging & deploy stage ") {
