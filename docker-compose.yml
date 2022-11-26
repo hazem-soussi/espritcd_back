@@ -46,6 +46,7 @@ services:
   angular-app:
     #The docker file in FE, builds and provides the docker image.
     image: hazem1998/front_app_docker:latest
+    container_name: rfront-app
     ports:
       - 4200:4200 #Forwars the exposed port 4200 on the container to port 4200 on the host machine
     links:
