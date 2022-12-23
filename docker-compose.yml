@@ -8,8 +8,8 @@ services:
     container_name: mysql-db
     #Environment variable for password and default database
     environment:
-      MYSQL_ROOT_PASSWORD: 'root'
-      MYSQL_DATABASE: 'achatdb'
+      MYSQL_ROOT_PASSWORD: 'admin'
+      MYSQL_DATABASE: 'ecommerceSpring'
     ports:
       - target: 3306
         published: 3306
@@ -17,39 +17,28 @@ services:
     volumes:
       - db:/var/lib/mysql
 
-      
-      
-      
-  #Back-end Spring Boot Application
+       #Back-end Spring Boot Application
   
   
   springboot-app:
     #The docker file in BE, build the jar and provides the docker image.
-    image: hazem1998/projet_esprit_cd:latest
+    image: hazem1998/dev_test:latest
     container_name: springboot-app
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/achatdb?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/ecommerceSpring?createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin
       MYSQL_HOST: mysql-db
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
-      MYSQL_DATABASE: achatdb
+      MYSQL_USER: admin
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: ecommerceSpring
     restart: on-failure
     #Environment variable for Spring Boot Application.
     ports:
       - 8089:8089 #Forwars the exposed port 8080 on the container to port 8080 on the host machine
     links:
       - mysql-db
-      #front-end angular app
-  angular-app:
-    #The docker file in FE, builds and provides the docker image.
-    image: hazem1998/front_app_docker:latest
-    container_name: rfront-app
-    ports:
-      - 4200:4200 #Forwars the exposed port 4200 on the container to port 4200 on the host machine
-    links:
-      - springboot-app
-volumes:
-  db:
+      
+  volumes:
+   db:
